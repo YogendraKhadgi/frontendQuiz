@@ -1,0 +1,45 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+      <mat-card class="mt20">
+        <mat-card-header>
+          <mat-card-title>
+            Read the instructions carefully
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>{{ quiz.title }}</h2>
+          <p>{{quiz.description}}</p>
+          <mat-divider></mat-divider>
+          <h1>Important Instructions</h1>
+          <ul>
+            <li>This quiz is only for practice purpose.</li>
+            <li>You have to submit this quiz within {{quiz.numberOfQuestions * 2}} minutes.</li>
+            <li>You can attempt the quiz any number of time.</li>
+            <li>There are {{quiz.numberOfQuestions}} questions in this quiz.</li>
+            <li>Each question has {{quiz.maxMarks / quiz.numberOfQuestions}} points.There will be no negative marking for wrong ones</li>
+            <li>All questions are of MCQ types.</li>
+          </ul>
+            <mat-divider></mat-divider>
+            <h1 class="mt20">Attempting quiz</h1>
+            <ul>
+              <li>Click <b>Start Quiz</b> button to start the quiz.</li>
+              <li>The time will start at the movement you click the Start button.</li>
+              <li>You cannot resume this quiz, if interrupted due to any reason.</li>
+              <li>Scroll down to move to next question.</li>
+              <li>Click on the submit button on completion of the quiz.</li>
+              <li>Report of the test will be generated automatically in the pdf format.</li>
+
+            </ul>
+
+
+        </mat-card-content>
+        <mat-card-actions class="mt20 text-center">
+          <button (click)="startQuiz()" mat-raised-button color="primary" >Start Quiz</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    </div>
+  </div>
+</div>

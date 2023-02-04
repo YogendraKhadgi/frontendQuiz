@@ -1,0 +1,126 @@
+<div class="bootstrap-wrapper" *ngIf="!isSubmit">
+  <div class="container-fluid">
+    <div class="row mt20">
+      <div class="col-md-2">
+        <mat-card style="margin-top: 50px">
+          <mat-card-content>
+            <h2>Instructions</h2>
+            <ul>
+              <li>Do not refresh the page</li>
+              <li>Don not switch the tabs</li>
+              <li>Do not minimize the window</li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-8">
+        <ng-container *ngIf="questions">
+          <h1>{{ questions[0].quiz.title }}</h1>
+        </ng-container>
+        <mat-card *ngFor="let q of questions; let i = index" class="mt10">
+          <mat-card-content>
+            <p>{{ i + 1 }}. <span [innerHTML]="q.content"></span></p>
+            <mat-divider></mat-divider>
+            <div class="row mt10">
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option1"
+                  [name]="q.quesId"
+                  [(ngModel)]="q.userAnswer"
+
+                />{{q.option1}}
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option2"
+                  [name]="q.quesId"
+                  [(ngModel)]="q.userAnswer"
+                />{{q.option2}}
+              </div>
+            </div>
+            <div class="row mt10">
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option3"
+                  [name]="q.quesId"
+                  [(ngModel)]="q.userAnswer"
+                />{{q.option3}}
+              </div>
+              <div class="col-md-6">
+                <input
+                  type="radio"
+                  [value]="q.option4"
+                  [name]="q.quesId"
+                  [(ngModel)]="q.userAnswer"
+                />{{q.option4}}
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <div class="container text-center mt20">
+          <button (click)="submitQuiz()" mat-raised-button color="accent">Submit</button>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <mat-card style="margin-top: 50px">
+          <mat-card-header>
+            <mat-card-title>Progress</mat-card-title>
+            <mat-card-subtitle>
+              The quiz will be automatically submitted when the timer reaches
+              0:0
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <h2 class="text-center">{{ getFormattedTime() }}</h2>
+            <mat-spinner
+              mode="determinate"
+              [value]="(timer / (this.questions.length * 1 * 60)) * 100"
+              style="margin: auto"
+            ></mat-spinner>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- show result -->
+<div class="bootstrap-wrapper mt10" *ngIf="isSubmit">
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h2>Quiz Results</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <h1>Total no. of questions attempted: {{ attempted }}</h1>
+          <h1>Total no. of correct answers: {{ correctAnswers }}</h1>
+          <h1>Your total points: {{ marksGot }}</h1>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="container text-center">
+            <button mat-raised-button color="primary" class="mr20" (click)="printResult()">
+              Print
+            </button>
+            <button
+              mat-raised-button
+              color="accent"
+              [routerLink]="'/user-dashboard/0'"
+            >
+              Home
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
